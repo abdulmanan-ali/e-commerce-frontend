@@ -4,19 +4,19 @@ import {
 } from "react-icons/ai";
 import {
   Column,
-  usePagination,
-  useSortBy,
-  useTable,
   TableOptions,
+  useTable,
+  useSortBy,
+  usePagination,
 } from "react-table";
 
-function TableHOC<T extends Object>(
+const TableHOC = <T extends Object>(
   columns: Column<T>[],
   data: T[],
-  containerClassname: string,
+  containerClassName: string,
   heading: string,
   showPagination: boolean = false
-) {
+) => {
   return function HOC() {
     const options: TableOptions<T> = {
       columns,
@@ -32,23 +32,22 @@ function TableHOC<T extends Object>(
       headerGroups,
       page,
       prepareRow,
-      nextPage,
-      pageCount,
-      state: { pageIndex },
       previousPage,
       canNextPage,
       canPreviousPage,
+      state: { pageIndex },
+      pageCount,
+      nextPage,
     } = useTable(options, useSortBy, usePagination);
 
     return (
-      <div className={containerClassname}>
+      <div className={containerClassName}>
         <h2 className="heading">{heading}</h2>
-
         <table className="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
+                {headerGroup.headers.map((column: any) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
                     {column.isSorted && (
@@ -69,7 +68,6 @@ function TableHOC<T extends Object>(
           <tbody {...getTableBodyProps()}>
             {page.map((row) => {
               prepareRow(row);
-
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
@@ -80,13 +78,12 @@ function TableHOC<T extends Object>(
             })}
           </tbody>
         </table>
-
         {showPagination && (
-          <div className="table-pagination">
+          <div className="show-pagination">
             <button disabled={!canPreviousPage} onClick={previousPage}>
               Prev
             </button>
-            <span>{`${pageIndex + 1} of ${pageCount}`}</span>
+            <span> {` ${pageIndex + 1} - ${pageCount} `}</span>
             <button disabled={!canNextPage} onClick={nextPage}>
               Next
             </button>
@@ -95,6 +92,6 @@ function TableHOC<T extends Object>(
       </div>
     );
   };
-}
+};
 
 export default TableHOC;
