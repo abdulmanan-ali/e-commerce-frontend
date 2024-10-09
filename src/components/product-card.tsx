@@ -1,6 +1,5 @@
 import { FaPlus } from "react-icons/fa";
 
-
 type ProductProps = {
   photo: string;
   name: string;
@@ -10,21 +9,18 @@ type ProductProps = {
 };
 
 const ProductCard = ({ name, price, stock, photo }: ProductProps) => {
-
-
-    const handler = () => {};
+  const handler = () => {};
   return (
     <>
       <div className="product-card">
         <img src={photo} alt="image" />
         <p>{name}</p>
-        <span>PKR{price} </span>
+        <span>PKR {price} </span>
         <span>{stock}</span>
-      </div>
-
-      <div>
-        <button onClick={() => handler()}></button>
-        <FaPlus />
+        <div>
+          <button onClick={() => handler()}></button>
+          <FaPlus />
+        </div>
       </div>
     </>
   );
