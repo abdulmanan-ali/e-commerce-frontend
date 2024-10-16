@@ -1,0 +1,78 @@
+.cart {
+    @include grid();
+    padding: 2rem 4rem;
+    @include flex(row, unset, unset, 4rem);
+    height: calc(100vh - 4rem);
+
+    >main {
+        width: 70%;
+    }
+
+    >aside {
+        width: 30%;
+        padding: 4rem;
+        line-height: 3rem;
+
+        >input {
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 0.28);
+            border-radius: 5px;
+            margin-top: 2rem;
+            padding: 0.5rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        >p {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.cart-item {
+    padding: 1rem;
+    @include flex(row, flex-start, center, 3rem);
+    margin-top: 3rem;
+    >img {
+        @include square(8rem);
+        object-fit: contain;
+    }
+
+    >article {
+        @include flex(column, center, flex-start, 0.25rem);
+
+        >span {
+            font-weight: 700;
+        }
+    }
+
+    >div {
+        margin-left: auto;
+        @include flex;
+
+       > button {
+            border: none;
+            cursor: pointer;
+            @include square(2rem);
+            border-radius: 2px;
+            @include flex;
+            font-size: 1.2rem;
+            & :hover {
+                background-color: $color2;
+                color: $color1;
+            }
+        }
+    }
+
+    > button {
+        padding: 1rem;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        @include flex();
+
+        &:hover {
+            color: red;
+        }
+    }
+}
