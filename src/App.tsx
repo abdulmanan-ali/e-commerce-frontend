@@ -27,6 +27,7 @@ const TransactionManagement = lazy(
 const Home = lazy(() => import("./pages/Home"));
 const Header = lazy(() => import("./components/Header"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Shipping = lazy(() => import("./pages/Shipping"));
 
 
 function App() {
@@ -37,13 +38,15 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Home />}> */}
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/shipping" element={<Shipping />} />
 
+          {/* admin dashboard */}
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/product" element={<Products />} />
           <Route path="/admin/customer" element={<Customers />} />
           <Route path="/admin/transaction" element={<Transaction />} />
           <Route path="/admin/cart" element={<Cart />} />
-          <Route path="/cart" element={<Cart />} />
 
           {/* Charts */}
           <Route path="/admin/chart/bar" element={<Barcharts />} />
