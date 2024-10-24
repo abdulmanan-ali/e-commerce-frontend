@@ -28,6 +28,9 @@ const Home = lazy(() => import("./pages/Home"));
 const Header = lazy(() => import("./components/Header"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Shipping = lazy(() => import("./pages/Shipping"));
+const Login = lazy(() => import("./pages/login"));
+const Orders = lazy(() => import("./pages/orders"));
+const Search = lazy(() => import("./pages/search"));
 
 
 function App() {
@@ -36,10 +39,12 @@ function App() {
       <Header />  
       <Suspense fallback={<Loader />}>
         <Routes>
+          {/* Headers */}
           {/* <Route path="/" element={<Home />}> */}
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shipping" element={<Shipping />} />
+          <Route path="/search" element={<Search />} />
 
           {/* admin dashboard */}
           <Route path="/admin/dashboard" element={<Dashboard />} />
@@ -47,6 +52,12 @@ function App() {
           <Route path="/admin/customer" element={<Customers />} />
           <Route path="/admin/transaction" element={<Transaction />} />
           <Route path="/admin/cart" element={<Cart />} />
+
+          {/* Not logged In Route */}
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/orders" element={<Orders />} />
+
 
           {/* Charts */}
           <Route path="/admin/chart/bar" element={<Barcharts />} />
